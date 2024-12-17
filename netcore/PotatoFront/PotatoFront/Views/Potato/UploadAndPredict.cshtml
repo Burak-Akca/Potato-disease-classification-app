@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Resim Yükle ve Predict Et";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form enctype="multipart/form-data" method="post" asp-action="UploadAndPredict">
+    <div class="form-group">
+        <label for="file">Resim Seçin:</label>
+        <input type="file" name="file" id="file" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Predict</button>
+</form>
+
+@if (ViewBag.PredictedClass != null && ViewBag.ConfidenceScore != null)
+{
+    <h3>Tahmin Sonucu: @ViewBag.PredictedClass</h3>
+    <p>Güven Skoru: @ViewBag.ConfidenceScore</p>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
